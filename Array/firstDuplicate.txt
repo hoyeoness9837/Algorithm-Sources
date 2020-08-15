@@ -1,0 +1,25 @@
+Question:
+Given an array a that contains only numbers in the range from 1 to a.length, find the first duplicate number for which the second occurrence has the minimal index. In other words, if there are more than 1 duplicated numbers, return the number for which the second occurrence has a smaller index than the second occurrence of the other number does. If there are no such elements, return -1.\
+
+Solution 1.
+Because of the given condition grants the available value of numbers in the array is always <= a.length, we can use following method.
+
+C++
+
+int firstDuplicate(std::vector<int> a)
+{
+    for(int i = 0; i < a.size(); i++)
+    {
+        int actualValue = abs(a[i]);
+        if(a[actualValue - 1] < 0)
+        {
+            return actualValue;
+        }
+        else
+        {
+            a[actualValue - 1] = -a[actualValue - 1];
+        }
+    }
+
+    return -1;
+}
