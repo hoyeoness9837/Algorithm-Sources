@@ -1,0 +1,18 @@
+####STRING####
+a = "Hello"
+b = "World"
+print(a + " " + b)
+#result = Hello World
+
+print("Do you know \"Python\" ?")
+#result = Do you know "Python" ?
+
+print("No"*3)
+#result = NoNoNo
+
+a = "ABCDEF"
+print(a[1:4] + " Restaurant")
+#result = BCD Restaurant
+
+print(a[-1] + "lower")
+#result = Flower
