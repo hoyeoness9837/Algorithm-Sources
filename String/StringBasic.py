@@ -1,4 +1,5 @@
 ####STRING####
+## string is a list too. so, is also iterable type.
 a = "Hello"
 b = "World"
 print(a + " " + b)
