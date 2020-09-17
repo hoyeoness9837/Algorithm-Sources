@@ -6,7 +6,7 @@ result = eval("5+7")
 print(result)
 # result = 12
 
-#sorted(), reverse, x:x[1] indicates their values.
+#sorted(), reverse, x:x[1] indicates their values. appliable either string or number.
 result = sorted([('apple', 10), ('banana', 1), ('blueberry', 5),
                  ('strawberry', 7), ('pear', 3)], key=lambda x: x[1], reverse=True)
 print(result)
