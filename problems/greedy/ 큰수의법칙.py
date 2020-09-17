@@ -1,12 +1,10 @@
-#Question#
-#What is the largest number you can make as adding up M times with given numbers in an array with lenght of N, if a certain number cannot be used K times in a row.
-#INPUT = 5 8 3    2 4 5 4 6
-#Example#
-# [2,4,5,4,6], M = 8, K = 3
-# answer = 6+6+6+5+6+6+6+5 = 46
+## Question ##
+# What is the largest number you can make as adding up M times with given numbers in an array with lenght of N, if a certain number cannot be used K times in a row.
+# INPUT = 5 8 3  |  2 4 5 4 6
+# ANSWER = 46
 
 
-### My Answer
+## My Answer
 [M, K] = [8, 3]
 numbers = [2, 4, 5, 4, 6]
 N = len(numbers)
@@ -20,7 +18,7 @@ result = int(r*(first_largest*K + second_largest))
 print(result)
 
 
-### Solution 1
+## Solution 1
 n, m, k = map(int, input().split())
 data = list(map(int, input().split()))
 
@@ -36,7 +34,7 @@ while True:
       break
     result += first
     m -= 1
-    
+
   if m == 0:
     break
   result += second
@@ -45,7 +43,7 @@ while True:
 print(result)
 
 
-### Solution 2
+## Solution 2
 n, m, k = map(int, input().split())
 data = list(map(int, input().split()))
 
@@ -63,7 +61,7 @@ result += second*(m-count)
 print(result)
 
 
-##notes##
+## Notes ##
 # get inputs map(int, input().split())
 # double check if you are using  '/', consider if you need '%'
 # test 4 8 4, [1,8,9,2], mine returns 70, solution returns 71
