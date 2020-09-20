@@ -1,4 +1,5 @@
 ## Question ##
+
 # In N * M 2D array, pick a Nth column and check its lowest number of that row. that number should be largest among other colums. find the number.
 # INPUT = N: 3 M: 3 | 3 1 2 | 4 1 4 | 2 2 2
 # ANSWER = 2

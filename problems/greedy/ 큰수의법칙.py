@@ -1,4 +1,5 @@
 ## Question ##
+
 # What is the largest number you can make as adding up M times with given numbers in an array with lenght of N, if a certain number cannot be used K times in a row.
 # INPUT = 5 8 3  |  2 4 5 4 6
 # ANSWER = 46
