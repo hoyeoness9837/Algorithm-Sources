@@ -49,5 +49,5 @@ print(x,y)
 
 ## Notes ##
 #1. how to set the movement in list is important
-#2. how and when to use for/while
+#2. how and when to use for/while while은 조건이있는 반복문.
 #3. if & continue to for ignoring some conditions, (difference btw break, pass ... )
