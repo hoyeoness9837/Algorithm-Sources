@@ -1,5 +1,5 @@
 ## Question ##
-
+# 로봇청소기 같은개념.
 # 현재위치에서 현재 방향을 기준으로 왼쪽방향 반시계방향으로 90도 회전하며 차ㅓ례대로 갈곳을 정한다. 아직 가보지 않은 칸이 존재하면 왼쪽방향으로 회전후 앞으로 한간 전진한다. 찾을때 까지 회전하다가 다 막혔거나 가봤을경우. 방향을 유지한채로 뒤로 가본다, 뒤에도 만약 가봤다면, 움직임을 멈춘다.
 # 북 0 동 1 남 2 서 3 를 방향으로 정하고 육지는 0 바다는 1로 정한다
 # 첫째 줄에 이동을 마친후 캐릭터가 방문한 칸의 수를 출력한다.
@@ -13,54 +13,61 @@
 
 ## Solution 1
 n, m = map(int, input().split())
-d = [[0] * m for _ in range(n)]
-x, y, direction = map(int, input().split())
-d[x][y] = 1
+d = [[0] * m for _ in range(n)] # 맵을 0(미방문) 으로 초기화
+x, y, direction = map(int, input().split()) # 현재 x,y 좌표 첫시작 방향 입력
+d[x][y] = 1 # 맨처음 시작점은 이미 방문한상태(1)로 처리.
 
 array = []
 for i in range(n):
-    array.append(list(map(int, input().split())))
+    array.append(list(map(int, input().split()))) # 초기화된 맵에 문제입력.
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+dx = [-1, 0, 1, 0] # 북, 동, 남, 서   남,동 = 1,1
+dy = [0, 1, 0, -1] # 북, 동, 남, 서   방향도 북동남서 0123 으로 정해졌으므로 이순서로정함
 
 
-def turn_left():
+def turn_left():  
     global direction
-    direction -= 1
-    if direction == -1:
+    direction -= 1 # 반시계방향으로 한번씩 회전 서(3) 남(2) 동(1) 북(0) 
+    if direction == -1: #만약 방향이  0-> -1로 바뀌면 북(0) ->서(3)로 인지
         direction = 3
 
 
-count = 1
-turn_time = 0
-while True:
-    turn_left()
-    nx = x + dx[direction]
-    ny = y + dy[direction]
+count = 1 #방문한 칸의 수를 입력하는것이므로 이미 방문한 시작점을 포함한 1부터 시작.
+turn_time = 0 # 총회전한 횟수 4번이 되면 원위치가 되므로, 나중에 이게 모든방향을확인했는지의 기준점이 될것임.
+while True: #모든 경우의 수(완전탐색)를 찾는문제임으로 while true: 로 시작.
+    turn_left() # 시작은 바로 왼쪽을 바라보고
+    nx = x + dx[direction]  # 그 위치로 한칸 이동한다면 nx라 가정
+    ny = y + dy[direction]  # 그 위치로 한칸 이동한다면 ny라 가정
 
-    if d[nx][ny] == 0 and array[nx][ny] == 0:
-        d[nx][ny] = 1
-        x = nx
+    if d[nx][ny] == 0 and array[nx][ny] == 0: # 만약 새로 이동할 곳이 미방문(0)일때엔, 즉 갈수있는곳이면
+        d[nx][ny] = 1 # 방문처리(1)해주고
+        x = nx # 나의 위치를 새로 이동할곳으로 바꿈, 즉 이동함 
         y = ny
-        count += 1
-        turn_time = 0
-        continue
-    else:
-        turn_time += 1
+        count += 1 # 이동했으니, 카운트를 1 올려줌
+        turn_time = 0 # 이동한곳에서 다시 새로운 환경에서 회전을 시작할것이므로 초기화함
+        continue #위에 if 조건이 참일땐 아래 else는 실행하지 않음.  
+    else: # 만약 새로 이동할 곳이 방문가능하지 못한곳(1)이라면, 
+        turn_time += 1 # 방향 회전만 할것이므로 1을 올려줌
 
-    if turn_time == 4:
-        nx = x - dx[direction]
+    if turn_time == 4: # 만약 모든 방향을 확인(동서남북, 4번)하여 다 방문된(1)곳이였다면,
+        nx = x - dx[direction] # 정반대 방향, 즉 뒤로 이동할거라면의 nx,ny를 가정
         ny = y - dy[direction]
 
-        if array[nx][ny] == 0:
-            x = nx
+        if array[nx][ny] == 0: # 뒤로 이동할 곳이 미방문(0) 지역이라면,
+            x = nx # 이동해줌
             y = ny
-        else:
-            break
-        turn_time = 0
+        else: # 뒤로도 이동이 안되는곳(1)라면,
+            break # 반복문 탈출, 종료함.
+        turn_time = 0 # 회전하지 않을것임. 즉 마지막에 바라보는 방향에서 방향회전을 멈춤. 
 
 print(count)
 
 
 ## Notes ##
+# 모든 부분에서 배울점이 많음.
+# 1. 새로 이동했을때의 가정을 위한 nx, ny
+# 2. 한 if 의 끝에는 회전수를 초기화 하여야 4이상으로 증가를 방지하고, 새로 이동한자리에서의 조건에서의 새출발가능.
+# 3. continue가 있어야 그 아래 else 회전을 스킵하고, while의 나머지 부분을 반복함. 
+# 4. 완전탐색, 즉 다 끝날때 까지 끝내는게 아닌 반복문엔 while True를 이용홤
+# 5. 조건들을 숫자과 조건으로 잘 표현해야함.
+# 6. break이후에 정답외에 부분에서 고정해야할것이 있는지 확인해봐야 에러가 안생김.
