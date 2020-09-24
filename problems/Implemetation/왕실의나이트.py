@@ -57,5 +57,5 @@ print(result)
 
 
 ## Notes ##
-# 1. ord("a")는 ASCII 코드의 숫자를 string으로 리턴한다
+# 1. ord("a")는 ASCII 코드의 숫자를 string으로 리턴한다, opposite is chr()
 # 2. important to know when to use and versus or.
