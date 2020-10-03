@@ -4,7 +4,7 @@ milk = list(map(int, input().split()))
 count = 0
 
 for i in range(n):
-    if(milk[i] == count%3):
+    if(milk[i] == count%3): # 순서가 3의배수인 012 012 012 이렇게 될것이므로.
         count += 1
 
 print(count)

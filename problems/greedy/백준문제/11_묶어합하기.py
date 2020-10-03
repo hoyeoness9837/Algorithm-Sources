@@ -42,7 +42,7 @@ pos.sort(reverse=True) # 6, 4, 2
 
 # 1) 작은 수부터 차례대로 묶는다. 
 for i in range(0, len(neg), 2): # ( start, end, by )
-    if i + 1 < len(neg): # 범위를 벗어나지 않는조건의 음수에 대해선, i+1 = 1,2,3 < 4 , (-9 * -8) = 72, (-1 * 0)= 0
+    if i + 1 < len(neg): # 범위를 벗어나지 않는조건(i+1이 최대값인 len(neg)를 벗어나지않아야함)의 음수에 대해선, i+1 = 1,2,3 < 4 , (-9 * -8) = 72, (-1 * 0)= 0
         result += neg[i] * neg[i + 1]
     else: # 묶이지 못한 음수들은 더해준다.
         result += neg[i]

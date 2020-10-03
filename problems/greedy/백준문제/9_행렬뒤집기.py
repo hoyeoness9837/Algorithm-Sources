@@ -17,7 +17,7 @@ def checkEquality():
   return 1 # 다르지 않다면 True 반환 
 
 count = 0
-for i in range(0, n-2): #플립해줄 부분행열의 크기가 3*3이므로 
+for i in range(0, n-2): #플립해줄 부분행열의 크기가 n*m내에서의  3*3이므로 
   for j in range(0, m-2):
     if A[i][j] !=B[i][j]: #행렬이 같지 않다면, 
       flip(i,j) # 플립(i->i+3, j->j+3)안의 모든 원소를 뒤집어준다.

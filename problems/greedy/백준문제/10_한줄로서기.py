@@ -1,6 +1,4 @@
 #question: 입력 값으로 키가 1인 사람부터 차례대로 자기보다 키가 큰 사람이 왼쪽에 몇 명이 있었는지 주어진다. 그리고 줄을 선 순서대로 키를 출력하면 된다. 
-
-출처: https://fullmoon1344.tistory.com/79 [코드이터]
 n = int(input())
 data = list(map(int, input().split()))
 
