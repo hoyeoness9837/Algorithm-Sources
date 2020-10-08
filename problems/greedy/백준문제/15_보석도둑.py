@@ -45,10 +45,10 @@ N, K = map(int, input().split())
 gem = []
 for i in range(N):
     M, V = list(map(int, input().split()))
-    heapq.heappush(gem, [M, V])
+    heapq.heappush(gem, [M, V]) #M 이 작은 순으로 힙이 구성이됨.
 
 bags = [int(input()) for i in range(K)]
-bags.sort()
+bags.sort() #가방에 담을수 있는 최대무게 오름순으로 정렬
 
 value = 0
 p = []
@@ -56,13 +56,13 @@ p = []
 for i in range(K):
     capacity = bags[i]
 
-    while gem and capacity >= gem[0][0]:
-        [M, V] = heapq.heappop(gem)
-        heapq.heappush(p, -V)
+    while gem and capacity >= gem[0][0]: # 가방에 담을수 있는 gem에있는 모든 보석에대해 
+        [M, V] = heapq.heappop(gem) #힙에서 빼내어
+        heapq.heappush(p, -V) # -V 가 작은순, 즉, V가 큰 순으로 p에 넣어줌.
 
-    if p:
-        value -= heapq.heappop(p)
-    elif not gem:
-        break
+    if p: #만약 넣을수 있는 보석이 p에 있는 경우. 
+        value -= heapq.heappop(p) # 힙에서 빼내어 -V로 나오므로 -해서 더해줌.
+    elif not gem: #만약 더이상 가방에 담을수 있는 gem이 없는경우.
+        break  #종료
 
 print(value)
