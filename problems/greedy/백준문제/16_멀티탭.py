@@ -15,11 +15,11 @@ s = list(map(int, input().split()))
 m = [0 for i in range(n)]
 cnt = 0
 for i in range(k):
-    isTrue = False # 우선 멀티탭이 비어있는지, 혹은 꽂으려고 하는 플러그가 있는지 확인.
-    for j in range(n):
-        if m[j] == s[i] or m[j] == 0: 
-            isTrue = True
-            m[j] = s[i]
+    isTrue = False 
+    for j in range(n):# 우선 멀티탭이 비어있는지(m[j] == 0), 혹은 꽂으려고 하는 플러그가 있는지 확인(m[j] == s[i]).
+        if m[j] == s[i] or m[j] == 0:  
+            isTrue = True # 꽂았다고 처리, 
+            m[j] = s[i] #그자리에 꽂는다.
             break
     if isTrue: # 둘중 하나가 True라면, 해당 플러그를 꽂고 
         continue
